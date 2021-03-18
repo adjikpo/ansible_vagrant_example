@@ -19,5 +19,6 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision "shell", inline: <<-SHELL
   sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
+  service ssh restart
   SHELL
 end
