@@ -36,3 +36,35 @@ echo "[front]
 192.168.50.12" > hosts
 echo "${color} ADD THE IP TO HOSTS ANSIBLE...DONE"
 
+#add the provisioning
+echo "${color} ADD THE PROVISIONING TO PLAYBOOK ANSIBLE...START"
+cd /home/vagrant/project-ansible
+sudo su
+echo " #front
+- hosts: front
+  remote_user: vagrant 
+  roles:
+    - env
+
+#back
+- hosts: back 
+  remote_user: vagrant
+  roles:
+    - env
+" > playbook.yml
+echo "${color} ADD THE PROVISIONING TO PLAYBOOK ANSIBLE...DONE"
+
+#client packages installation test
+# cd /home/vagrant/project-ansible
+# sudo su
+# echo "- name: Install 
+#   apt:
+#     name={{ item }}
+#     state=latest
+#     update_case=yes
+#   with_items:
+#     - vim
+#     - git 
+#     - curl
+#     - tree
+# " > ???
