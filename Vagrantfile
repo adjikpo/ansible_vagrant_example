@@ -15,7 +15,8 @@ Vagrant.configure("2") do |config|
       s.customize ["modifyvm", :id, "--memory", 1024]
       s.customize ["modifyvm", :id, "--name", "server"]
       s.customize ["modifyvm", :id, '--cpus', "2"]
-    end 
+    end
+    server.vm.provision "shell", path: "provision/provision.server.sh"
   end
 
   # Clients vm 
