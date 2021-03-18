@@ -26,6 +26,13 @@ ansible-galaxy init roleProject
 echo "${color} ANSIBLE...STRUCTURE....DONE"
 tree
 
-#add the clients ip 
-#cd /home/vagrant/project-ansible
+#add the clients ip 192.168.50.11 & 192.168.50.12
+echo "${color} ADD THE IP TO HOSTS ANSIBLE...START"
+cd /home/vagrant/project-ansible
+sudo su
+echo "[front]
+192.168.50.11
+[back]
+192.168.50.12" > hosts
+echo "${color} ADD THE IP TO HOSTS ANSIBLE...DONE"
 
