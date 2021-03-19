@@ -6,16 +6,17 @@ Vagrant.configure("2") do |config|
   config.vm;box_url = 'debian/buster64'
   config.vm.box_check_update = false
 
-  #Server vm 
-  config.vm.define 'server' do |server|
-    server.vm.hostname = 'server'
-    server.vm.network 'private_network', ip: '192.168.50.10'
-    server.vm.provider 'virtualbox' do |s|
-      s.customize ["modifyvm", :id, "--natdnshostresolver1", "on" ]
-      s.customize ["modifyvm", :id, "--memory", 1024]
-      s.customize ["modifyvm", :id, "--name", "server"]
-      s.customize ["modifyvm", :id, '--cpus', "2"]
-    end 
+  #Main vm 
+  config.vm.define 'main' do |main|
+    main.vm.hostname = 'main'
+    main.vm.network 'private_network', ip: '192.168.50.10'
+    main.vm.provider 'virtualbox' do |m|
+      m.customize ["modifyvm", :id, "--natdnshostresolver1", "on" ]
+      m.customize ["modifyvm", :id, "--memory", 1024]
+      m.customize ["modifyvm", :id, "--name", "main"]
+      m.customize ["modifyvm", :id, '--cpus', "2"]
+    end
+    main.vm.provision "shell", path: "provision/provision.main.sh"
   end
 
   # Clients vm 
